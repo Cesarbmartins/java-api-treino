@@ -35,6 +35,9 @@ public class Comentario {
         
     }
 
+    public Comentario(Double nota){
+        this.nota = nota;
+    }
     public Comentario(String texto, String imagem, Date data, Double nota, Usuario usuario, Obra obra) {
         this.texto = texto;
         this.imagem = imagem;

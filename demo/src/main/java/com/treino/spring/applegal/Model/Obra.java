@@ -2,6 +2,8 @@ package com.treino.spring.applegal.Model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "obra")
 public class Obra {
@@ -28,15 +30,34 @@ public class Obra {
     @Column
     private String tipo;
 
+    @OneToMany(mappedBy = "obra", cascade = CascadeType.ALL)
+    private List<Comentario> comentarios;
+
     public Obra(){
 }
-    public Obra(String nome,String sinopse, Integer qtd_episodios, String tipo,Double media_avaliacao, String data_lancamento) {
+
+    public Obra(Integer qtd_episodios) {
+        this.qtd_episodios = qtd_episodios;
+    }
+
+    public Obra(Double media_avaliacao) {
+        this.media_avaliacao = media_avaliacao;
+    }
+
+    public Obra(String nome,
+                String sinopse,
+                Integer qtd_episodios,
+                String tipo,
+                Double media_avaliacao,
+                String data_lancamento,
+                List<Comentario> comentarios) {
         this.nome=nome;
         this.qtd_episodios=qtd_episodios;
         this.tipo=tipo;
         this.sinopse=sinopse;
         this.media_avaliacao=media_avaliacao;
         this.data_lancamento=data_lancamento;
+        this.comentarios=comentarios;
     }
 
     public Long getId() {
@@ -93,6 +114,14 @@ public class Obra {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public List<Comentario> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
     }
 }
 

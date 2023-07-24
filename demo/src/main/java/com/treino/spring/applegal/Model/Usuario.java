@@ -23,6 +23,15 @@ public class Usuario {
 
     }
 
+    public Usuario(String nome){
+      this.nome = nome;
+    }
+
+    public Usuario(String nome,String email){
+        this.email = email;
+        this.nome = nome;
+    }
+
     public Usuario(String nome, String email, String senha) {
         this.nome = nome;
         this.email = email;
