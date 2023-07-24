@@ -3,6 +3,7 @@ package com.treino.spring.applegal.Model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "obra")
 public class Obra {
 
     @Id
@@ -27,21 +28,15 @@ public class Obra {
     @Column
     private String tipo;
 
-    public Obra() {
-    }
-
-    public Obra(String nome,
-                String sinopse,
-                Integer qtd_episodios,
-                Double media_avaliacao,
-                String data_lancamento,
-                String tipo) {
-        this.nome = nome;
-        this.sinopse = sinopse;
-        this.data_lancamento = data_lancamento;
-        this.media_avaliacao = media_avaliacao;
-        this.qtd_episodios = qtd_episodios;
-        this.tipo =tipo;
+    public Obra(){
+}
+    public Obra(String nome,String sinopse, Integer qtd_episodios, String tipo,Double media_avaliacao, String data_lancamento) {
+        this.nome=nome;
+        this.qtd_episodios=qtd_episodios;
+        this.tipo=tipo;
+        this.sinopse=sinopse;
+        this.media_avaliacao=media_avaliacao;
+        this.data_lancamento=data_lancamento;
     }
 
     public Long getId() {
@@ -52,6 +47,14 @@ public class Obra {
         this.id = id;
     }
 
+    public String getSinopse() {
+        return sinopse;
+    }
+
+    public void setSinopse(String sinopse) {
+        this.sinopse = sinopse;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -60,20 +63,12 @@ public class Obra {
         this.nome = nome;
     }
 
-    public String getSinopse() {
-        return sinopse;
-    }
-
     public Integer getQtd_episodios() {
         return qtd_episodios;
     }
 
     public void setQtd_episodios(Integer qtd_episodios) {
         this.qtd_episodios = qtd_episodios;
-    }
-
-    public void setSinopse(String sinopse) {
-        this.sinopse = sinopse;
     }
 
     public Double getMedia_avaliacao() {
@@ -100,3 +95,5 @@ public class Obra {
         this.tipo = tipo;
     }
 }
+
+

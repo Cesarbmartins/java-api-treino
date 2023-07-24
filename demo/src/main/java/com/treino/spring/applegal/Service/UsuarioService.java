@@ -14,6 +14,7 @@ public class UsuarioService {
     }
 
     public Usuario cadastrarUsuario(Usuario usuario){
+
         return usuarioRepository.save(usuario);
     }
 
@@ -29,6 +30,7 @@ public class UsuarioService {
     }
 
     public void deletarUsuario(Long id){
+
         usuarioRepository.deleteById(id);
     }
 }
