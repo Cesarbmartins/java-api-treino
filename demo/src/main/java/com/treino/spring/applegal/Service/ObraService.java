@@ -22,6 +22,11 @@ public class ObraService {
         return obraRepository.findById(id).stream().toList();
     }
 
+    public Obra acharObraPorId(Long id){
+        return obraRepository.findById(id).orElseThrow();
+    }
+
+
     public Obra salvarObra(Obra obra){
         return obraRepository.save(obra);
     }

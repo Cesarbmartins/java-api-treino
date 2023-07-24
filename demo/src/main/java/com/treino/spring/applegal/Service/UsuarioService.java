@@ -13,6 +13,11 @@ public class UsuarioService {
         this.usuarioRepository = usuarioRepository;
     }
 
+public Usuario buscarUsuario(Long id){
+        return usuarioRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));
+    }
+
     public Usuario cadastrarUsuario(Usuario usuario){
 
         return usuarioRepository.save(usuario);
