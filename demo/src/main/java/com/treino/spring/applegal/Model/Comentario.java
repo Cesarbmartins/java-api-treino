@@ -15,9 +15,6 @@ public class Comentario {
     private String texto;
 
     @Column()
-    private String imagem;
-
-    @Column()
     private Date data;
 
     @Column()
@@ -38,9 +35,8 @@ public class Comentario {
     public Comentario(Double nota){
         this.nota = nota;
     }
-    public Comentario(String texto, String imagem, Date data, Double nota, Usuario usuario, Obra obra) {
+    public Comentario(String texto, Date data, Double nota, Usuario usuario, Obra obra) {
         this.texto = texto;
-        this.imagem = imagem;
         this.data = data;
         this.usuario = usuario;
         this.obra = obra;
@@ -53,14 +49,6 @@ public class Comentario {
 
     public void setTexto(String texto) {
         this.texto = texto;
-    }
-
-    public String getImagem() {
-        return imagem;
-    }
-
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
     }
 
     public Date getData() {

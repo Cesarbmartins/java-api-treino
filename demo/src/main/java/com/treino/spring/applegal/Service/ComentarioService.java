@@ -29,11 +29,13 @@ public class ComentarioService {
         this.obraRepository = obraRepository;
     }
 
-    public Comentario salvarComentario(Long idUsuario,
-                                       Long idObra,
-                                       Comentario comentario) {
+    public Comentario salvarComentario(Long idUsuario, Long idObra, Comentario comentario) {
         Usuario usuario = usuarioService.buscarUsuario(idUsuario);
         Obra obra = obraService.acharObraPorId(idObra);
+
+        comentario.setUsuario(usuario);
+        comentario.setObra(obra);
+        comentario.setData(new Date());
 
         Comentario comentarioSalvo = comentarioRepository.save(comentario);
 
@@ -42,11 +44,10 @@ public class ComentarioService {
             obra.setMedia_avaliacao(novaMedia);
             obraRepository.save(obra);
         }
-        comentario.setUsuario(usuario);
-        comentario.setObra(obra);
-        comentario.setData(new Date());
+
         return comentarioSalvo;
     }
+
 
     public Double calcularMediaAvaliacao(Obra obra) {
         List<Comentario> comentarios = obra.getComentarios();

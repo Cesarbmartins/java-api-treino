@@ -1,5 +1,6 @@
 package com.treino.spring.applegal.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -30,7 +31,8 @@ public class Obra {
     @Column
     private String tipo;
 
-    @OneToMany(mappedBy = "obra", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "obra")
     private List<Comentario> comentarios;
 
     public Obra(){

@@ -1,5 +1,6 @@
 package com.treino.spring.applegal.Controller;
 
+import com.treino.spring.applegal.DTO.UsuarioObraDTO;
 import com.treino.spring.applegal.Model.Comentario;
 import com.treino.spring.applegal.Model.Obra;
 import com.treino.spring.applegal.Model.Usuario;
@@ -17,16 +18,17 @@ public class ComentarioController {
 
     private final ComentarioService comentarioService;
 
-    private ComentarioController(ComentarioService comentarioService){
+
+    public ComentarioController(ComentarioService comentarioService){
         this.comentarioService = comentarioService;
     }
 
-    @PostMapping("/salvar")
+    @PostMapping("/salvar/{idUsuario}/{idObra}")
     public ResponseEntity<Comentario> salvarComentario(@RequestBody Comentario comentario,
-                                                       @RequestBody Long idUsuario,
+                                                       @PathVariable Long idUsuario,
                                                        @PathVariable Long idObra){
         Comentario comentarioSalvo = comentarioService.salvarComentario(idUsuario,idObra,comentario);
-        return ResponseEntity.status(HttpStatus.CREATED).body(comentarioSalvo);
+        return ResponseEntity.status(HttpStatus.OK).body(comentarioSalvo);
     }
 
     @GetMapping("/listar/{idObra}")
@@ -36,8 +38,10 @@ public class ComentarioController {
     }
 
     @GetMapping("/listarPorUsuarioEObra")
-    public ResponseEntity<List<Comentario>> listarPorUsuarioEObra(@PathVariable Usuario usuario,
-                                                                  @PathVariable Obra obra){
+    public ResponseEntity<List<Comentario>> listarPorUsuarioEObra(@RequestBody UsuarioObraDTO usuarioObraDTO) {
+        Usuario usuario = usuarioObraDTO.getUsuario();
+        Obra obra = usuarioObraDTO.getObra();
+
         List<Comentario> comentarios = comentarioService.listarComentariosPorUsuarioEObra(usuario, obra);
         return ResponseEntity.status(HttpStatus.OK).body(comentarios);
     }
